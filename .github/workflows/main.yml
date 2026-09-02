@@ -29,7 +29,7 @@ jobs:
 
       - name: Unpack Project
         run: |
-          cat << 'EOF' | base64 -d > project.zip
+          cat << 'EOF' | tr -d '[:space:]' | base64 -d > project.zip
           UEsDBBQAAAAIAEtJIl2tG40+tQAAAE4BAAAkAAAAR2xpdHRlclNhbmRTbGF0ZS9zZXR0aW5ncy5n
           cmFkbGUua3RzpY+xasNAEET7vMIUly4WkUpt4kKFEqcwRovNnSROrN2r3dER4r/HaEwR3KYZ5j3g
           PexzQ+wR2bF3bYvYq5eQ+9B58p0m6vF7fD418G9w4B4YtqL0bNfW530eG0mYJ4jHw1F9qJ7X
@@ -105,7 +105,7 @@ jobs:
       - name: Build with Gradle
         run: |
           cd GlitterSandSlate
-          gradle assembleDebug --stacktrace
+          gradle assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
